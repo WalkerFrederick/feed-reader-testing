@@ -3,7 +3,7 @@ Testing was done in Jasmine
 
 
 ## Download and open index.html to run...<br>
-checkout the specs below
+or checkout my code below
 
 
 ```javascript
