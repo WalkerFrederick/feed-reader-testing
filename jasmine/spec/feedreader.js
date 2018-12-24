@@ -58,10 +58,10 @@ $(function() {
              it('toggles on click', function () {
                  $('.menu-icon-link').click();
                  console.log($('body').attr('class'));
-                 expect($('body').attr('class')).toBe('');
+                 expect($('body')[0]).not.toHaveClass('menu-hidden')
                  $('.menu-icon-link').click();
                  console.log($('body').attr('class'))
-                 expect($('body').attr('class')).toBe('menu-hidden');
+                 expect($('body')[0]).toHaveClass('menu-hidden')
              })
 
          })
@@ -73,25 +73,23 @@ $(function() {
             });
             //checks for at least one entry in the .feed container
             it('has a minimum of one entry within the .feed container', function(done) {
-                let entry = $('.entry');
-                expect(entry.length).not.toBe(0)
+                expect($('.feed .entry').length).not.toBe(0);
                 done();
             });
 
         });
 
         describe('New feed selection', function() {
-            let urlOne;
-            let urlTwo;
+
+            let oldFeed;
 
             beforeEach(function(done) {
-                urlTwo = $('.entry-link').attr('href');
+                oldFeed = $('.feed').html();
                 loadFeed(1, done);
             });
             //checks to make sure the new url doesn't equal the last one
             it('When a new feed is loaded by the loadFeed function the content changes', function(done) {
-                urlOne = $('.entry-link').attr('href');
-                expect(urlOne).not.toEqual(urlTwo);
+                expect($('.feed').html()).not.toEqual(oldFeed);
                 done();
             });
         });
