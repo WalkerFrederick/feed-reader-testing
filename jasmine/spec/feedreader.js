@@ -95,8 +95,6 @@ $(function() {
             })
             //checks to make sure the content is actually changing
             it('When a new feed is loaded by the loadFeed function the content changes', function(done) {
-                console.log(firstLoadFeed)
-                console.log(secondLoadFeed)
                 expect(firstLoadFeed).not.toEqual(secondLoadFeed);
                 done();
             });
