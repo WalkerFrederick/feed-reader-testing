@@ -81,15 +81,23 @@ $(function() {
 
         describe('New feed selection', function() {
 
-            let oldFeed;
+            let firstLoadFeed;
+            let secondLoadFeed;
 
-            beforeEach(function(done) {
-                oldFeed = $('.feed').html();
-                loadFeed(1, done);
-            });
-            //checks to make sure the new url doesn't equal the last one
+            beforeEach(function(done){
+                loadFeed(0, function () {
+                    firstLoadFeed = $('.feed').html();
+                    loadFeed(1, function () {
+                        secondLoadFeed = $('.feed').html();
+                        done();
+                    })
+                })
+            })
+            //checks to make sure the content is actually changing
             it('When a new feed is loaded by the loadFeed function the content changes', function(done) {
-                expect($('.feed').html()).not.toEqual(oldFeed);
+                console.log(firstLoadFeed)
+                console.log(secondLoadFeed)
+                expect(firstLoadFeed).not.toEqual(secondLoadFeed);
                 done();
             });
         });
